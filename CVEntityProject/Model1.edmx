@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBCVENTITYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ABOUT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KNOWLEDGE" Type="varchar" MaxLength="500" />
+          <Property Name="EDUCATION" Type="varchar" MaxLength="500" />
+          <Property Name="WORK" Type="varchar" MaxLength="1000" />
+          <Property Name="USERID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_ADDRESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PHONE" Type="varchar" MaxLength="20" />
+          <Property Name="MAIL" Type="varchar" MaxLength="50" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="50" />
+          <Property Name="LOCATION" Type="varchar" MaxLength="200" />
+          <Property Name="USERID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PASWORD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_CONTACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MAIL" Type="varchar" MaxLength="50" />
+          <Property Name="MESSAGE" Type="varchar" MaxLength="500" />
+          <Property Name="ABOUT" Type="varchar" MaxLength="50" />
+          <Property Name="USERID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_MYWORKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="100" />
+          <Property Name="USERID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_SKILLS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKILL" Type="varchar" MaxLength="50" />
+          <Property Name="DEGREE" Type="tinyint" />
+          <Property Name="USERID" Type="int" />
+        </EntityType>
+        <Association Name="FK__TBL_ABOUT__USERI__38996AB5">
+          <End Role="TBL_ADMIN" Type="Self.TBL_ADMIN" Multiplicity="0..1" />
+          <End Role="TBL_ABOUT" Type="Self.TBL_ABOUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ABOUT">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_ADDRE__USERI__398D8EEE">
+          <End Role="TBL_ADMIN" Type="Self.TBL_ADMIN" Multiplicity="0..1" />
+          <End Role="TBL_ADDRESS" Type="Self.TBL_ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ADDRESS">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_CONTA__USERI__3A81B327">
+          <End Role="TBL_ADMIN" Type="Self.TBL_ADMIN" Multiplicity="0..1" />
+          <End Role="TBL_CONTACT" Type="Self.TBL_CONTACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_CONTACT">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_MYWOR__USERI__3B75D760">
+          <End Role="TBL_ADMIN" Type="Self.TBL_ADMIN" Multiplicity="0..1" />
+          <End Role="TBL_MYWORKS" Type="Self.TBL_MYWORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_MYWORKS">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_SKILL__USERI__3C69FB99">
+          <End Role="TBL_ADMIN" Type="Self.TBL_ADMIN" Multiplicity="0..1" />
+          <End Role="TBL_SKILLS" Type="Self.TBL_SKILLS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SKILLS">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBCVENTITYModelStoreContainer">
+          <EntitySet Name="TBL_ABOUT" EntityType="Self.TBL_ABOUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_ADDRESS" EntityType="Self.TBL_ADDRESS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_CONTACT" EntityType="Self.TBL_CONTACT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MYWORKS" EntityType="Self.TBL_MYWORKS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SKILLS" EntityType="Self.TBL_SKILLS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TBL_ABOUT__USERI__38996AB5" Association="Self.FK__TBL_ABOUT__USERI__38996AB5">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_ABOUT" EntitySet="TBL_ABOUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_ADDRE__USERI__398D8EEE" Association="Self.FK__TBL_ADDRE__USERI__398D8EEE">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_ADDRESS" EntitySet="TBL_ADDRESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_CONTA__USERI__3A81B327" Association="Self.FK__TBL_CONTA__USERI__3A81B327">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_CONTACT" EntitySet="TBL_CONTACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_MYWOR__USERI__3B75D760" Association="Self.FK__TBL_MYWOR__USERI__3B75D760">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_MYWORKS" EntitySet="TBL_MYWORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_SKILL__USERI__3C69FB99" Association="Self.FK__TBL_SKILL__USERI__3C69FB99">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_SKILLS" EntitySet="TBL_SKILLS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBCVENTITYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_ABOUT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KNOWLEDGE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EDUCATION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="WORK" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="USERID" Type="Int32" />
+          <NavigationProperty Name="TBL_ADMIN" Relationship="DBCVENTITYModel.FK__TBL_ABOUT__USERI__38996AB5" FromRole="TBL_ABOUT" ToRole="TBL_ADMIN" />
+        </EntityType>
+        <EntityType Name="TBL_ADDRESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="USERID" Type="Int32" />
+          <NavigationProperty Name="TBL_ADMIN" Relationship="DBCVENTITYModel.FK__TBL_ADDRE__USERI__398D8EEE" FromRole="TBL_ADDRESS" ToRole="TBL_ADMIN" />
+        </EntityType>
+        <EntityType Name="TBL_CONTACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MESSAGE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ABOUT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USERID" Type="Int32" />
+          <NavigationProperty Name="TBL_ADMIN" Relationship="DBCVENTITYModel.FK__TBL_CONTA__USERI__3A81B327" FromRole="TBL_CONTACT" ToRole="TBL_ADMIN" />
+        </EntityType>
+        <EntityType Name="TBL_MYWORKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="USERID" Type="Int32" />
+          <NavigationProperty Name="TBL_ADMIN" Relationship="DBCVENTITYModel.FK__TBL_MYWOR__USERI__3B75D760" FromRole="TBL_MYWORKS" ToRole="TBL_ADMIN" />
+        </EntityType>
+        <EntityType Name="TBL_SKILLS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKILL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DEGREE" Type="Byte" />
+          <Property Name="USERID" Type="Int32" />
+          <NavigationProperty Name="TBL_ADMIN" Relationship="DBCVENTITYModel.FK__TBL_SKILL__USERI__3C69FB99" FromRole="TBL_SKILLS" ToRole="TBL_ADMIN" />
+        </EntityType>
+        <EntityContainer Name="DBCVENTITYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_ABOUT" EntityType="Self.TBL_ABOUT" />
+          <EntitySet Name="TBL_ADDRESS" EntityType="Self.TBL_ADDRESS" />
+          <EntitySet Name="TBL_CONTACT" EntityType="Self.TBL_CONTACT" />
+          <EntitySet Name="TBL_MYWORKS" EntityType="Self.TBL_MYWORKS" />
+          <EntitySet Name="TBL_SKILLS" EntityType="Self.TBL_SKILLS" />
+          <EntitySet Name="TBL_ADMIN" EntityType="DBCVENTITYModel.TBL_ADMIN" />
+          <AssociationSet Name="FK__TBL_ABOUT__USERI__38996AB5" Association="DBCVENTITYModel.FK__TBL_ABOUT__USERI__38996AB5">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_ABOUT" EntitySet="TBL_ABOUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_ADDRE__USERI__398D8EEE" Association="DBCVENTITYModel.FK__TBL_ADDRE__USERI__398D8EEE">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_ADDRESS" EntitySet="TBL_ADDRESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_CONTA__USERI__3A81B327" Association="DBCVENTITYModel.FK__TBL_CONTA__USERI__3A81B327">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_CONTACT" EntitySet="TBL_CONTACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_MYWOR__USERI__3B75D760" Association="DBCVENTITYModel.FK__TBL_MYWOR__USERI__3B75D760">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_MYWORKS" EntitySet="TBL_MYWORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_SKILL__USERI__3C69FB99" Association="DBCVENTITYModel.FK__TBL_SKILL__USERI__3C69FB99">
+            <End Role="TBL_ADMIN" EntitySet="TBL_ADMIN" />
+            <End Role="TBL_SKILLS" EntitySet="TBL_SKILLS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TBL_ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PASWORD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_ABOUT" Relationship="DBCVENTITYModel.FK__TBL_ABOUT__USERI__38996AB5" FromRole="TBL_ADMIN" ToRole="TBL_ABOUT" />
+          <NavigationProperty Name="TBL_ADDRESS" Relationship="DBCVENTITYModel.FK__TBL_ADDRE__USERI__398D8EEE" FromRole="TBL_ADMIN" ToRole="TBL_ADDRESS" />
+          <NavigationProperty Name="TBL_CONTACT" Relationship="DBCVENTITYModel.FK__TBL_CONTA__USERI__3A81B327" FromRole="TBL_ADMIN" ToRole="TBL_CONTACT" />
+          <NavigationProperty Name="TBL_MYWORKS" Relationship="DBCVENTITYModel.FK__TBL_MYWOR__USERI__3B75D760" FromRole="TBL_ADMIN" ToRole="TBL_MYWORKS" />
+          <NavigationProperty Name="TBL_SKILLS" Relationship="DBCVENTITYModel.FK__TBL_SKILL__USERI__3C69FB99" FromRole="TBL_ADMIN" ToRole="TBL_SKILLS" />
+        </EntityType>
+        <Association Name="FK__TBL_ABOUT__USERI__38996AB5">
+          <End Type="DBCVENTITYModel.TBL_ADMIN" Role="TBL_ADMIN" Multiplicity="0..1" />
+          <End Type="DBCVENTITYModel.TBL_ABOUT" Role="TBL_ABOUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ABOUT">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_ADDRE__USERI__398D8EEE">
+          <End Type="DBCVENTITYModel.TBL_ADMIN" Role="TBL_ADMIN" Multiplicity="0..1" />
+          <End Type="DBCVENTITYModel.TBL_ADDRESS" Role="TBL_ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ADDRESS">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_CONTA__USERI__3A81B327">
+          <End Type="DBCVENTITYModel.TBL_ADMIN" Role="TBL_ADMIN" Multiplicity="0..1" />
+          <End Type="DBCVENTITYModel.TBL_CONTACT" Role="TBL_CONTACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_CONTACT">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_MYWOR__USERI__3B75D760">
+          <End Type="DBCVENTITYModel.TBL_ADMIN" Role="TBL_ADMIN" Multiplicity="0..1" />
+          <End Type="DBCVENTITYModel.TBL_MYWORKS" Role="TBL_MYWORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_MYWORKS">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_SKILL__USERI__3C69FB99">
+          <End Type="DBCVENTITYModel.TBL_ADMIN" Role="TBL_ADMIN" Multiplicity="0..1" />
+          <End Type="DBCVENTITYModel.TBL_SKILLS" Role="TBL_SKILLS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADMIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SKILLS">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBCVENTITYModelStoreContainer" CdmEntityContainer="DBCVENTITYEntities">
+          <EntitySetMapping Name="TBL_ABOUT">
+            <EntityTypeMapping TypeName="DBCVENTITYModel.TBL_ABOUT">
+              <MappingFragment StoreEntitySet="TBL_ABOUT">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KNOWLEDGE" ColumnName="KNOWLEDGE" />
+                <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
+                <ScalarProperty Name="WORK" ColumnName="WORK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ADDRESS">
+            <EntityTypeMapping TypeName="DBCVENTITYModel.TBL_ADDRESS">
+              <MappingFragment StoreEntitySet="TBL_ADDRESS">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_CONTACT">
+            <EntityTypeMapping TypeName="DBCVENTITYModel.TBL_CONTACT">
+              <MappingFragment StoreEntitySet="TBL_CONTACT">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ABOUT" ColumnName="ABOUT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MYWORKS">
+            <EntityTypeMapping TypeName="DBCVENTITYModel.TBL_MYWORKS">
+              <MappingFragment StoreEntitySet="TBL_MYWORKS">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SKILLS">
+            <EntityTypeMapping TypeName="DBCVENTITYModel.TBL_SKILLS">
+              <MappingFragment StoreEntitySet="TBL_SKILLS">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SKILL" ColumnName="SKILL" />
+                <ScalarProperty Name="DEGREE" ColumnName="DEGREE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ADMIN">
+            <EntityTypeMapping TypeName="DBCVENTITYModel.TBL_ADMIN">
+              <MappingFragment StoreEntitySet="TBL_ADMIN">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASWORD" ColumnName="PASWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
