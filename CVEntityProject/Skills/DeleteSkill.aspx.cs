@@ -13,8 +13,8 @@ namespace CVEntityProject
         {
            
             DBCVENTITYEntities db = new DBCVENTITYEntities();
-            int x = Convert.ToInt32(Request.QueryString["ID"]);
-            var skill = db.TBL_SKILLS.Find(x);
+            int Skills = Convert.ToInt32(Request.QueryString["ID"]);
+            var skill = db.TBL_SKILLS.Find(Skills);
             db.TBL_SKILLS.Remove(skill);
             db.SaveChanges();
             Response.Redirect("MySkills.aspx");

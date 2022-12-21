@@ -12,8 +12,8 @@ namespace CVEntityProject
         protected void Page_Load(object sender, EventArgs e)
         {
             DBCVENTITYEntities db = new DBCVENTITYEntities();
-            int x = Convert.ToInt32(Request.QueryString["ID"]);
-            var Knowledge = db.TBL_ABOUT.Find(x);
+            int Knowledges = Convert.ToInt32(Request.QueryString["ID"]);
+            var Knowledge = db.TBL_ABOUT.Find(Knowledges);
             db.TBL_ABOUT.Remove(Knowledge);
             db.SaveChanges();
             Response.Redirect("MyWorkLife.aspx");
